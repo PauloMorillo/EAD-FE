@@ -1,0 +1,27 @@
+.layout {
+    display: flex;
+    box-sizing: border-box;
+}
+.leftview{
+    width: 30%;
+}
+
+.rightview{
+    width: 70%;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .layout {
+        display: block;
+        box-sizing: border-box;
+    }
+    .leftview{
+        width: 100%;
+    }
+    
+    .rightview{
+        width: 100%;
+       
+    }
+  }
