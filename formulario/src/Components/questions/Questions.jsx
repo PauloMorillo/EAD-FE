@@ -74,10 +74,10 @@ const Questions = ({ initialItem = 10 }) => {
       <Layout titulo='Nombre Paciente' tituloRight='Questions' >
         <div>
           <h2>Pregunta:</h2>
-          <p>{questionShow.question}</p>
-          <div style={{ display: 'flex' }}>
-            <button onClick={() => handleAnswer("Si")}>Si</button>
-            <button onClick={() => handleAnswer("No")}>No</button>
+          <p className='questionText'>{questionShow.question}</p>
+          <div className='buttonContainer'>
+            <button className='buttonQuestion' onClick={() => handleAnswer("Si")}>Si</button>
+            <button className='buttonQuestion' onClick={() => handleAnswer("No")}>No</button>
           </div>
         </div>
       </Layout>
