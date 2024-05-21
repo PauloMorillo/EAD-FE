@@ -3,6 +3,7 @@
     box-sizing: border-box;
     margin: 0 auto;
     width: 90%;
+    height: 90vh;
 }
 .leftview{
     width: 30%;

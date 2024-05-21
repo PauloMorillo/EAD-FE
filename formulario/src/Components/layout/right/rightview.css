@@ -7,10 +7,10 @@
 
 .main {
     width: 100%;
-    background-color: #F8F4F0;
     height: 100%;
+    background-color: #F8F4F0;
     margin: 0 auto;
-    padding: 200px 50px 0px 100px;
+    padding: 10% 10% 10% 10%;
     box-sizing: border-box;
     border-top-left-radius: 100px;
 
