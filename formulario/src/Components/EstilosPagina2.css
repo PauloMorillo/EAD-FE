@@ -1,15 +1,46 @@
+.caja2 {
+  display: flex;
+  flex-direction: column;
+ 
+  width: 100%;
+}
+
 .dropdown {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
+  width: 100%;
+  max-width: 800px; /* Ajusta el ancho máximo del contenedor */
+  margin: 0 auto; /* Centra el contenedor */
+}
+
+.dropdown-container {
+  width: 100%;
+}
+
+.dropdown-toggle {
+  width: 100%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+  background-color: #ffe9ca;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 15px 30px;
+  cursor: pointer;
+  border-radius: 30px;
+  font-family: 'Fredoka One', sans-serif;
+  text-align: center;
+ 
+}
+
+.dropdown-toggle:hover {
+  background-color: #fba987;
 }
 
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 5px); 
-  left: 50%;
-  transform: translateX(-50%);
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%; /* Asegura que el menú tenga el mismo ancho que el botón */
   background-color: #fff;
   border: 1px solid #ccc;
   border-top: none;
@@ -20,22 +51,8 @@
   font-family: 'Fredoka One', sans-serif;
 }
 
-.dropdown-toggle {
-  background-color: #ffe9ca;
-  border: 1px solid #ccc;
-  color: #333;
-  padding: 15px 30px; 
-  cursor: pointer;
-  border-radius: 30px; 
-  font-family: 'Fredoka One', sans-serif;
-}
-
-.dropdown-toggle:hover {
-  background-color: #fba987; 
-}
-
 .dropdown-item {
-  padding: 10px; 
+  padding: 10px;
   cursor: pointer;
 }
 
@@ -49,24 +66,25 @@
   font-size: 23px;
   font-family: 'Fredoka One', sans-serif;
 }
+
 #re {
   color: #ef7e4e;
-  
   text-align: center;
   font-size: 40px;
   font-family: 'Fredoka One', sans-serif;
   margin-top: 18px;
   margin-bottom: 10px;
-} 
+}
+
 #n {
   color: #ffffff;
-  
   text-align: center;
   font-size: 25px;
   font-family: 'Fredoka One', sans-serif;
   margin-top: 18px;
   margin-bottom: 10px;
-} 
+}
+
 .nombre-container {
   display: flex;
   align-items: center;
@@ -74,12 +92,84 @@
   height: 100%;
 }
 
-.preguntas{
+.preguntas {
   color: white;
 }
 
-@media (max-width: 1024px) {
-  .dropdown-item:hover {
-    background-color: #fba987;
+.pregunta-actual {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  max-width: 600px; /* Ajusta el ancho máximo */
+  text-align: left; /* Alinea el texto a la izquierda */
+  margin-top: 20px; /* Añade un margen superior */
+  margin-left: 20px; /* Añade un margen izquierdo para alinearlo */
+}
+
+.pregunta-actual h2 {
+  font-size: 18px; /* Ajusta el tamaño del texto */
+  margin-bottom: 10px; /* Añade un margen inferior */
+  color: black; /* Asegura que el texto sea negro */
+}
+
+.answer-buttons {
+  display: flex;
+  justify-content: center; /* Centra los botones */
+  margin-top: 20px; /* Añade un margen superior */
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.answer-button {
+  background-color: #ffffff;
+  color: #ef7e4e;
+  border: 2px solid #ef7e4e; /* Añade un borde naranja */
+  padding: 15px 30px; /* Ajusta el relleno para hacer los botones más grandes */
+  border-radius: 10px; /* Ajusta el radio del borde */
+  cursor: pointer;
+  margin: 10px; /* Añade un margen alrededor de cada botón */
+  font-size: 16px; /* Ajusta el tamaño del texto */
+}
+
+.answer-button:hover {
+  background-color: #fba987;
+  color: #ffffff;
+}
+
+#titulo11 {
+  color: #3a4454;
+  background-color: white;
+  font-size: 23px;
+  font-family: 'Fredoka One', sans-serif;
+}
+
+#pq {
+  color: #3a4454;
+  font-family: 'Fredoka One', sans-serif;
+  width: 100%; /* Asegura que el texto ocupe todo el ancho del contenedor */
+  text-align: left; /* Alinea el texto a la izquierda */
+  margin-left: 20px; /* Añade un margen izquierdo para alejarlo del borde */
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .dropdown-toggle,
+  .dropdown-menu {
+    width: 90%;
+    max-width: none;
+  }
+
+  #re {
+    font-size: 30px;
+  }
+
+  #n {
+    font-size: 20px;
+  }
+
+  .pregunta-actual h2 {
+    font-size: 16px;
+  }
+
+  .answer-button {
+    padding: 12px 24px; /* Ajusta el relleno para pantallas pequeñas */
+    font-size: 14px; /* Ajusta el tamaño del texto para pantallas pequeñas */
   }
 }
