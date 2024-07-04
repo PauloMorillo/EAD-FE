@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import './EstilosFormulario.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Pagina2 from './Pagina2'; // Import Pagina2 component
+import Pagina2 from './Pagina2'; 
 
 export default function PaginaFormulario() {
   const { register, formState: { errors }, handleSubmit, setValue, watch } = useForm({
@@ -48,7 +48,7 @@ export default function PaginaFormulario() {
 
   useEffect(() => {
     if (usuarioCreado) {
-      navigate('/pagina2', { state: { name: watch('name') } }); // Pass the name to the second page
+      navigate('/pagina2', { state: { name: watch('name') } }); 
     }
   }, [usuarioCreado, navigate, watch]);
 
@@ -87,7 +87,7 @@ export default function PaginaFormulario() {
 
   const handleFormSubmit = (data) => {
     if (errorNombre || errorFechaNacimiento || edadError) {
-      return; // Don't submit if there are validation errors
+      return; 
     }
     onSubmit(data);
   };
@@ -101,13 +101,13 @@ export default function PaginaFormulario() {
         <h2 id="a">Datos del paciente</h2>
         <form onSubmit={handleSubmit(handleFormSubmit)}>
           <div className="caja3">
-            <div className="campo">
-              <label id="titulo2">Nombre</label>
-              <input className='botoninput' type="text" {...register('name', { required: true, maxLength: 40 })} onChange={handleNombreChange} />
-              {errors.name?.type === 'required' && <p>No olvides agregar el nombre del paciente.</p>}
-              {errors.name?.type === 'maxLength' && <p>El nombre debe tener menos de 40 caracteres</p>}
-              {errorNombre && <p>No se pueden colocar números ni caracteres especiales en el nombre.</p>}
-            </div>
+          <div className="campo">
+    <label id="titulo2">Nombre</label>
+    <input className='botoninput' type="text" {...register('name', { required: true, maxLength: 40 })} onChange={handleNombreChange} />
+    {errors.name?.type === 'required' && <p>No olvides agregar el nombre del paciente.</p>}
+    {errors.name?.type === 'maxLength' && <p>El nombre debe tener menos de 40 caracteres</p>}
+    {errorNombre && <p>No se pueden colocar números ni caracteres especiales en el nombre.</p>}
+</div>
             <div className="campo">
               <label id="titulo3">Fecha de nacimiento</label>
               <input className='botonin' type="date" {...register('birth_date', { required: true })} onChange={handleFechaNacimientoChange} />
@@ -123,7 +123,7 @@ export default function PaginaFormulario() {
                 </p>
                 <input className='botinp' type="number" {...register('weeks_gestation', {
                   required: true,
-                  validate: value => parseInt(value) > 24 || "Las semanas de gestación deben ser mayores a 24"
+                  validate: value => (parseInt(value) > 23 && parseInt(value) < 41) || "Las semanas de gestación deben ser mayores a 23 y menores a 41"
                 })} />
                 {errors.weeks_gestation && <p>{errors.weeks_gestation.message}</p>}
               </div>
