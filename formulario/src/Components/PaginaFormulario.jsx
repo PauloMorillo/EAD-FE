@@ -49,7 +49,9 @@ export default function PaginaFormulario() {
 
   useEffect(() => {
     if (usuarioCreado) {
-      navigate('/pagina2', { state: { name: watch('name'), id: (idPatient) } });
+
+      navigate('/pagina2', { state: { name: watch('name'), birth_date: watch('birth_date'), id: (idPatient) } });
+      
     }
   }, [usuarioCreado, navigate, watch]);
 

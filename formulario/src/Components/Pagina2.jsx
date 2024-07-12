@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import './EstilosPagina2.css';
 
 export default function Pagina2() {
@@ -32,7 +34,8 @@ export default function Pagina2() {
     };
 
     const fetchQuestions = (componente) => {
-        fetch(`http://18.189.81.6:9000/api/questions/?birth_date=2018-07-13&componente=${componente}&format=json&semanas_gestacion=40`)
+        const birthDate = location.state.birth_date; // Obtener la fecha de nacimiento del estado
+        fetch(`http://18.189.81.6:9000/api/questions/?birth_date=${birthDate}&componente=${componente}&format=json&semanas_gestacion=40`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error en la respuesta del servidor');
@@ -320,7 +323,7 @@ export default function Pagina2() {
                     <h1 id="titulo10">Selecciona el área a evaluar</h1>
                     <div>
                         <button onClick={toggleDropdown} className="dropdown-toggle">
-                            {buttonText}
+                            {buttonText} <FontAwesomeIcon icon={faCaretDown} />
                         </button>
                         {isOpen && (
                             <div className="dropdown-menu">
