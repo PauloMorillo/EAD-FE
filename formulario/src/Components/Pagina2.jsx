@@ -95,18 +95,10 @@ export default function Pagina2() {
         // }
 
         let questionSelect = currentQuestion.question;
-        console.log(questionSelect);
-        console.log(preguntas);
         // let questionSelect = document.getElementById('question').innerHTML;
         let filterQuestion = preguntas.find(x => x.question === questionSelect)
         let id = filterQuestion.item;
         let idQuestion = filterQuestion.id
-
-        //   console.log(questionSelect);
-          console.log(filterQuestion);
-        console.log(id);
-          console.log(idQuestion); 
-
         saveAnswer(id, answer, questionSelect, idQuestion)
         validCase(id);
     };
@@ -132,7 +124,6 @@ export default function Pagina2() {
                 'item': id
             }
         );
-        /*   console.log(questionResponse); */
         let positionArray;
         for (let i = 0; i <= preguntas.length - 1; i++) {
 
@@ -163,10 +154,8 @@ export default function Pagina2() {
           })
           .then(response => response.json())
           .then(data => {
-            // console.log(data);
           })
           .catch(error => {
-            console.log(error);
           });
       
       }
@@ -174,7 +163,6 @@ export default function Pagina2() {
       const validCase=(id)=> {
         let positionArray;
         let filterQuestion = preguntas.filter(x => x.item === id);
-        /*   console.log(filterQuestion); */
         for (let i = 0; i <= preguntas.length - 1; i++) {
           if (preguntas[i].item === filterQuestion[0].item) {
             positionArray = i;
@@ -239,10 +227,8 @@ export default function Pagina2() {
               if (preguntas[positionArray + 1].response) {
                 //Filtra el array y trae todas las preguntas que ya se respondieron para ver a que pregunta debe volver
                 let findQuestionNext = preguntas.filter(x => x.isResponse === true);
-                console.log(findQuestionNext);
                 //si comenzo con una respuesta negativa y al momento de volver nuevamente ingresa una respuesta negativa termina el proceso 
                 if (!findQuestionNext[findQuestionNext.length - 1].response && !findQuestionNext[findQuestionNext.length - 2].response) {
-                  console.log('Respues -1 length => ' + findQuestionNext[findQuestionNext.length - 1].response + 'Respues -2 length => ' + findQuestionNext[findQuestionNext.length - 2].response);
                   let confirmEv = confirm(' A llegado al punto de cieerre Desea evaluar al paciente ? ')
                   if (confirmEv) {
                     setTimeout('seeResult(patienSession.id,pointInitial)', 500)
@@ -253,7 +239,6 @@ export default function Pagina2() {
                 }
               } else {
                 //manda para arriba en el orden de las preguntas, cuando la pregunta siguente fue negativa 
-                console.log(positionArray);
                 searchQuestion(preguntas[positionArray - 1].item)
               }
             }
@@ -296,7 +281,6 @@ export default function Pagina2() {
         se implrime en el html  en el componente "questionb" */
         let filterQuestion = preguntas.filter(x => x.item === id)
         let questionSelect = filterQuestion[0].item;
-        console.log('dsadsad'+questionSelect);
         setCurrentQuestionIndex(questionSelect-1)
         // document.getElementById('question').innerHTML = questionSelect;
       }
