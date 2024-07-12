@@ -11,8 +11,8 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 800px; /* Ajusta el ancho máximo del contenedor */
-  margin: 0 auto; /* Centra el contenedor */
+  max-width: 800px;
+  margin: 0 auto; 
 }
 
 .dropdown-container {
@@ -20,7 +20,7 @@
 }
 
 .dropdown-toggle {
-  width: 100%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+  width: 100%; 
   background-color: #ffe9ca;
   border: 1px solid #ccc;
   color: #333;
@@ -40,7 +40,7 @@
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
-  width: 100%; /* Asegura que el menú tenga el mismo ancho que el botón */
+  width: 100%; 
   background-color: #fff;
   border: 1px solid #ccc;
   border-top: none;
@@ -97,35 +97,33 @@
 }
 
 .pregunta-actual {
-  width: 100%; /* Ocupa todo el ancho disponible */
-  max-width: 600px; /* Ajusta el ancho máximo */
-  text-align: left; /* Alinea el texto a la izquierda */
-  margin-top: 20px; /* Añade un margen superior */
-  margin-left: 20px; /* Añade un margen izquierdo para alinearlo */
+  width: 100%; 
+  max-width: 600px; 
+  text-align: left; 
+  margin-top: 20px; 
+  margin-left: 20px;
 }
 
 .pregunta-actual h2 {
-  font-size: 18px; /* Ajusta el tamaño del texto */
-  margin-bottom: 10px; /* Añade un margen inferior */
-  color: black; /* Asegura que el texto sea negro */
-}
+  font-size: 18px; 
+  margin-bottom: 10px; 
+  color: black; }
 
 .answer-buttons {
   display: flex;
-  justify-content: center; /* Centra los botones */
-  margin-top: 20px; /* Añade un margen superior */
-  width: 100%; /* Ocupa todo el ancho disponible */
+  justify-content: center; 
+  margin-top: 20px; 
+  width: 100%; 
 }
 
 .answer-button {
   background-color: #ffffff;
   color: #ef7e4e;
-  border: 2px solid #ef7e4e; /* Añade un borde naranja */
-  padding: 15px 30px; /* Ajusta el relleno para hacer los botones más grandes */
-  border-radius: 10px; /* Ajusta el radio del borde */
+  border: 2px solid #ef7e4e;
+  padding: 15px 30px; 
   cursor: pointer;
-  margin: 10px; /* Añade un margen alrededor de cada botón */
-  font-size: 16px; /* Ajusta el tamaño del texto */
+  margin: 10px; 
+  font-size: 16px; 
 }
 
 .answer-button:hover {
@@ -143,9 +141,9 @@
 #pq {
   color: #3a4454;
   font-family: 'Fredoka One', sans-serif;
-  width: 100%; /* Asegura que el texto ocupe todo el ancho del contenedor */
-  text-align: left; /* Alinea el texto a la izquierda */
-  margin-left: 20px; /* Añade un margen izquierdo para alejarlo del borde */
+  width: 100%;
+  text-align: left; 
+  margin-left: 20px; 
   font-size: 20px;
 }
 
@@ -169,7 +167,7 @@
   }
 
   .answer-button {
-    padding: 12px 24px; /* Ajusta el relleno para pantallas pequeñas */
-    font-size: 14px; /* Ajusta el tamaño del texto para pantallas pequeñas */
+    padding: 12px 24px; 
+    font-size: 14px; 
   }
 }

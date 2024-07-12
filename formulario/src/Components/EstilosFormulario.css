@@ -31,7 +31,7 @@ body {
 }
 
 p {
-    color: #db635c; /* Color del texto */
+    color: #db635c; 
     font-size: 14px;
     margin-bottom: 0px;
 }
@@ -65,11 +65,11 @@ p {
     width: 90%;
     height: 650px;
     margin: 0 auto;
-    padding: 0; /* Elimina el relleno para evitar espacios innecesarios */
+    padding: 0; 
     border: 1px solid #ffffff;
     border-radius: 10px;
     background-color: #2c3748;
-    overflow: hidden; /* Evita el desbordamiento del contenido */
+    overflow: hidden; 
     height: 94vh;
 }
 
@@ -80,8 +80,8 @@ p {
     border-radius: 10px;
     flex: 30%;
     border-bottom-right-radius: 20px;
-    height: 100%; /* Utiliza todo el alto de la caja contenedora */
-    margin: 0; /* Elimina los márgenes predeterminados */
+    height: 100%; 
+    margin: 0; 
 }
 
 .caja2 {
@@ -89,8 +89,8 @@ p {
     padding: 20px;
     border-radius: 10px;
     flex: 70%;
-    height: 100%; /* Utiliza todo el alto de la caja contenedora */
-    margin: 0; /* Elimina los márgenes predeterminados */
+    height: 100%; 
+    margin: 0; 
     border-top-left-radius: 100px;
 }
 
