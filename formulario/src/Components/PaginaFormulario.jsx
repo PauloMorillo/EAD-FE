@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import './EstilosFormulario.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Pagina2 from './Pagina2'; 
+import Pagina2 from './Pagina2';
 
 export default function PaginaFormulario() {
   const { register, formState: { errors }, handleSubmit, setValue, watch } = useForm({
@@ -14,6 +14,7 @@ export default function PaginaFormulario() {
   const [mostrarSemanasGestacion, setMostrarSemanasGestacion] = useState(false);
   const [edadError, setEdadError] = useState(false);
   const [usuarioCreado, setUsuarioCreado] = useState(false);
+  const [idPatient, setIdPatient] = useState(0);
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
@@ -39,7 +40,7 @@ export default function PaginaFormulario() {
       console.log('Usuario creado correctamente:', response.data);
       window.alert('Usuario creado correctamente');
       setUsuarioCreado(true);
-
+      setIdPatient(response.data.id)
     } catch (error) {
       console.error('Error al enviar los datos:', error.message);
       window.alert('Error al enviar los datos');
@@ -48,7 +49,7 @@ export default function PaginaFormulario() {
 
   useEffect(() => {
     if (usuarioCreado) {
-      navigate('/pagina2', { state: { name: watch('name') } }); 
+      navigate('/pagina2', { state: { name: watch('name'), id: (idPatient) } });
     }
   }, [usuarioCreado, navigate, watch]);
 
@@ -87,7 +88,7 @@ export default function PaginaFormulario() {
 
   const handleFormSubmit = (data) => {
     if (errorNombre || errorFechaNacimiento || edadError) {
-      return; 
+      return;
     }
     onSubmit(data);
   };
@@ -101,13 +102,13 @@ export default function PaginaFormulario() {
         <h2 id="a">Datos del paciente</h2>
         <form onSubmit={handleSubmit(handleFormSubmit)}>
           <div className="caja3">
-          <div className="campo">
-    <label id="titulo2">Nombre</label>
-    <input className='botoninput' type="text" {...register('name', { required: true, maxLength: 40 })} onChange={handleNombreChange} />
-    {errors.name?.type === 'required' && <p>No olvides agregar el nombre del paciente.</p>}
-    {errors.name?.type === 'maxLength' && <p>El nombre debe tener menos de 40 caracteres</p>}
-    {errorNombre && <p>No se pueden colocar números ni caracteres especiales en el nombre.</p>}
-</div>
+            <div className="campo">
+              <label id="titulo2">Nombre</label>
+              <input className='botoninput' type="text" {...register('name', { required: true, maxLength: 40 })} onChange={handleNombreChange} />
+              {errors.name?.type === 'required' && <p>No olvides agregar el nombre del paciente.</p>}
+              {errors.name?.type === 'maxLength' && <p>El nombre debe tener menos de 40 caracteres</p>}
+              {errorNombre && <p>No se pueden colocar números ni caracteres especiales en el nombre.</p>}
+            </div>
             <div className="campo">
               <label id="titulo3">Fecha de nacimiento</label>
               <input className='botonin' type="date" {...register('birth_date', { required: true })} onChange={handleFechaNacimientoChange} />
