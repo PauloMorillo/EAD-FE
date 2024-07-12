@@ -29,7 +29,6 @@ export default function PaginaFormulario() {
 
     const newData = mostrarSemanasGestacion ? { ...data } : { ...data, weeks_gestation: undefined };
 
-    console.log('Datos a enviar:', newData);
 
     try {
       const response = await axios.post('http://18.189.81.6:9000/api/patient/', newData, {
@@ -37,7 +36,6 @@ export default function PaginaFormulario() {
           'Content-Type': 'application/json'
         }
       });
-      console.log('Usuario creado correctamente:', response.data);
       window.alert('Usuario creado correctamente');
       setUsuarioCreado(true);
       setIdPatient(response.data.id)
@@ -49,7 +47,9 @@ export default function PaginaFormulario() {
 
   useEffect(() => {
     if (usuarioCreado) {
-      navigate('/pagina2', { state: { name: watch('name'), id: (idPatient) } });
+
+      navigate('/pagina2', { state: { name: watch('name'), birth_date: watch('birth_date'), id: (idPatient) } });
+
     }
   }, [usuarioCreado, navigate, watch]);
 
