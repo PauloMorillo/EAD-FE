@@ -296,11 +296,11 @@ export default function Pagina2() {
                         <p id="re"> {rangoEdad}</p>
 
                         <p id="n">Edad:</p>
-                        <p id="n">{edad}</p>
+                        <p id="no">{edad}</p>
                     </div>
                 )}
                 <p id="n">Nombre: </p>
-                <p id="n">{name}xczv</p>
+                <p id="no">{name}</p>
             </div>
             <div className="caja2">
                 <div className="dropdown">
