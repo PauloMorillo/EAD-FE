@@ -293,11 +293,15 @@ export default function Pagina2() {
                         <p id="re"> {rangoEdad}</p>
 
                         <p id="n">Edad:</p>
-                        <p id="n">{edad}</p>
+                        <p id="no">{edad}</p>
                     </div>
                 )}
                 <p id="n">Nombre: </p>
+<<<<<<< HEAD
                 <p id="n">{name}xczv</p>
+=======
+                <p id="no">{name}</p>
+>>>>>>> 3cbb2487 (correcion errores 2)
             </div>
             <div className="caja2">
                 <div className="dropdown">

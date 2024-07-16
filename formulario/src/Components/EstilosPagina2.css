@@ -1,8 +1,8 @@
 .caja2 {
   display: flex;
   flex-direction: column;
- 
   width: 100%;
+  
 }
 
 .dropdown {
@@ -11,8 +11,13 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+<<<<<<< HEAD
   max-width: 800px; /* Ajusta el ancho máximo del contenedor */
   margin: 0 auto; /* Centra el contenedor */
+=======
+  max-width: 800px;
+  margin: 0 auto;
+>>>>>>> 3cbb2487 (correcion errores 2)
 }
 
 .dropdown-container {
@@ -20,7 +25,11 @@
 }
 
 .dropdown-toggle {
+<<<<<<< HEAD
   width: 100%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+=======
+  width: 100%;
+>>>>>>> 3cbb2487 (correcion errores 2)
   background-color: #ffe9ca;
   border: 1px solid #ccc;
   color: #333;
@@ -29,7 +38,6 @@
   border-radius: 30px;
   font-family: 'Fredoka One', sans-serif;
   text-align: center;
- 
 }
 
 .dropdown-toggle:hover {
@@ -40,7 +48,11 @@
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
+<<<<<<< HEAD
   width: 100%; /* Asegura que el menú tenga el mismo ancho que el botón */
+=======
+  width: 100%;
+>>>>>>> 3cbb2487 (correcion errores 2)
   background-color: #fff;
   border: 1px solid #ccc;
   border-top: none;
@@ -83,6 +95,7 @@
   font-family: 'Fredoka One', sans-serif;
   margin-top: 18px;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .nombre-container {
@@ -97,6 +110,7 @@
 }
 
 .pregunta-actual {
+<<<<<<< HEAD
   width: 100%; /* Ocupa todo el ancho disponible */
   max-width: 600px; /* Ajusta el ancho máximo */
   text-align: left; /* Alinea el texto a la izquierda */
@@ -108,17 +122,38 @@
   font-size: 18px; /* Ajusta el tamaño del texto */
   margin-bottom: 10px; /* Añade un margen inferior */
   color: black; /* Asegura que el texto sea negro */
+=======
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+  margin-top: 100px;
+  margin-left: 20px;
+  font-family: 'Fredoka One', sans-serif;
+}
+
+.pregunta-actual h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #3a4454; /* Color azul */
+>>>>>>> 3cbb2487 (correcion errores 2)
 }
 
 .answer-buttons {
   display: flex;
+<<<<<<< HEAD
   justify-content: center; /* Centra los botones */
   margin-top: 20px; /* Añade un margen superior */
   width: 100%; /* Ocupa todo el ancho disponible */
+=======
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+>>>>>>> 3cbb2487 (correcion errores 2)
 }
 
 .answer-button {
   background-color: #ffffff;
+<<<<<<< HEAD
   color: #ef7e4e;
   border: 2px solid #ef7e4e; /* Añade un borde naranja */
   padding: 15px 30px; /* Ajusta el relleno para hacer los botones más grandes */
@@ -126,6 +161,16 @@
   cursor: pointer;
   margin: 10px; /* Añade un margen alrededor de cada botón */
   font-size: 16px; /* Ajusta el tamaño del texto */
+=======
+  color: #000000; /* Letra en negro */
+  border: 2px solid #ef7e4e;
+  padding: 16px 32px; /* Reducir tamaño del botón */
+  cursor: pointer;
+  margin: 10px;
+  font-size: 18px; /* Reducir tamaño de la fuente */
+  border-radius: 50px; /* Botones redondeados */
+  font-family: 'Fredoka One', sans-serif;
+>>>>>>> 3cbb2487 (correcion errores 2)
 }
 
 .answer-button:hover {
@@ -143,10 +188,43 @@
 #pq {
   color: #3a4454;
   font-family: 'Fredoka One', sans-serif;
+<<<<<<< HEAD
   width: 100%; /* Asegura que el texto ocupe todo el ancho del contenedor */
   text-align: left; /* Alinea el texto a la izquierda */
   margin-left: 20px; /* Añade un margen izquierdo para alejarlo del borde */
+=======
+  width: 100%;
+  text-align: left;
+  margin-left: 20px;
+>>>>>>> 3cbb2487 (correcion errores 2)
   font-size: 20px;
+}
+
+#no {
+  color: #ffffff;
+  font-family: 'Fredoka One', sans-serif;
+  text-align: center;
+  font-size: 19px;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  font-weight: 300; /* Ajuste para que el texto sea más delgado */
+}
+
+.continue-button {
+  background-color: #fba987;
+  color: #3a4454; /* Letra en azul */
+  border: 2px solid #ef7e4e;
+  padding: 20px 50px; /* Aumentar tamaño del botón */
+  cursor: pointer;
+  margin: 10px;
+  font-size: 22px; /* Aumentar tamaño de la fuente */
+  border-radius: 50px; /* Botón redondeado */
+  font-family: 'Fredoka One', sans-serif;
+}
+
+.continue-button:hover {
+  background-color: #fb8451;
+  color: #ffffff;
 }
 
 @media (max-width: 768px) {
@@ -163,13 +241,28 @@
   #n {
     font-size: 20px;
   }
+  .pregunta-actual {
 
+    margin-top: 5px;
+ 
+  }
   .pregunta-actual h2 {
     font-size: 16px;
+   
   }
 
   .answer-button {
+<<<<<<< HEAD
     padding: 12px 24px; /* Ajusta el relleno para pantallas pequeñas */
     font-size: 14px; /* Ajusta el tamaño del texto para pantallas pequeñas */
+=======
+    padding: 12px 24px; 
+    font-size: 16px; 
+>>>>>>> 3cbb2487 (correcion errores 2)
+  }
+  
+  .continue-button {
+    padding: 16px 40px; 
+    font-size: 20px; 
   }
 }
