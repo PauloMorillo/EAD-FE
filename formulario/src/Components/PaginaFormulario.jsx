@@ -25,7 +25,10 @@ export default function PaginaFormulario() {
       return;
     }
 
-    const newData = mostrarSemanasGestacion ? { ...data } : { ...data, weeks_gestation: undefined };
+    const newData = {
+      ...data,
+      weeks_gestation: mostrarSemanasGestacion ? (data.weeks_gestation || 40) : undefined
+    };
 
     console.log('Datos a enviar:', newData);
 
@@ -88,6 +91,11 @@ export default function PaginaFormulario() {
     if (errorNombre || errorFechaNacimiento || edadError) {
       return; 
     }
+
+    if (mostrarSemanasGestacion && !data.weeks_gestation) {
+      data.weeks_gestation = 40;
+    }
+
     onSubmit(data);
   };
 
@@ -121,8 +129,7 @@ export default function PaginaFormulario() {
                   (en caso de dejar vacío, se toma por defecto 40 semanas)
                 </p>
                 <input className='botinp' type="number" {...register('weeks_gestation', {
-                  required: true,
-                  validate: value => (parseInt(value) > 23 && parseInt(value) < 41) || "Las semanas de gestación deben ser mayores a 23 y menores a 41"
+                  validate: value => (!value || (parseInt(value) > 23 && parseInt(value) < 41)) || "Las semanas de gestación deben ser mayores a 23 y menores a 41"
                 })} />
                 {errors.weeks_gestation && <p>{errors.weeks_gestation.message}</p>}
               </div>

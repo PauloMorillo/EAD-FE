@@ -11,12 +11,15 @@ export default function Pagina3() {
             <div className="caja1">
                 {edad && rangoEdad && (
                     <div>
-                        <p id="re">Rango de Edad: {rangoEdad}</p>
-                        <p id="n">Edad: {edad}</p>
-                        
+                        <p id="re">Rango de Edad:</p>
+                        <p id="re"> {rangoEdad}</p>
+                    
+                        <p id="n">Edad:</p>
+                        <p id="no">{edad}</p>
                     </div>
                 )}
-                <p id="n">Nombre: {name}</p>
+                <p id="n">Nombre: </p>
+                <p id="no">{name}</p>
             </div>
             <div className="caja2">
                 <h2 id="a">{selectedOption}</h2>
