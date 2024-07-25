@@ -1,0 +1,53 @@
+
+#puntaje-directo {
+    font-size: 20px;
+    color: #3a4454;
+    font-family: 'Fredoka One', sans-serif;
+    margin-bottom: 10px;
+}
+
+#color {
+    font-size: 20px;
+    font-family: 'Fredoka One', sans-serif;
+   color:rgb(41, 171, 41);
+    padding: 10px;
+    border-radius: 5px;
+}
+#componente {
+    font-size: 23px;
+    color: #3a4454;
+    font-family: 'Fredoka One', sans-serif;
+    margin-bottom: 10px;
+}
+
+#resultados {
+    text-align: center;
+    font-size: 24px; 
+    font-weight: bold;
+    color: #ef7e4e;
+    font-family: 'Fredoka One', sans-serif;
+}
+
+.color-text {
+    color: yellow; 
+}
+
+.resultado-detalle {
+    text-align: left; 
+}
+
+.componente-text {
+    font-weight: bold; 
+}
+
+.puntaje-text {
+    font-weight: normal; 
+}
+
+.linea-azul {
+    border: none;
+    height: 2px;
+    background-color: #3a4454;
+    margin-top: 10px;
+    margin-bottom: 10px; 
+}

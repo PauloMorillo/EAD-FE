@@ -1,10 +1,15 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Estilospagina3.css'; 
 
 export default function Pagina3() {
     const location = useLocation();
+    const navigate = useNavigate();
     const { selectedOption, name, edad, rangoEdad, preguntas } = location.state || {};
+
+    const handleContinue = () => {
+        navigate('/resultados', { state: { selectedOption, name, edad, rangoEdad, preguntas } });
+    };
 
     return (
         <div className="caja">
@@ -23,21 +28,15 @@ export default function Pagina3() {
             </div>
             <div className="caja2">
                 <h2 id="a">{selectedOption}</h2>
-                <p id="pd">El puntaje directo es: <br></br><span className="puntaje">45</span><br></br><span className="puntaje">Desarrollo esperado para la edad</span> </p>
+                <p id="pd">El puntaje directo es: <br /><span className="puntaje">45</span><br /><span className="puntaje">Desarrollo esperado para la edad</span> </p>
                 
-                {}
                 <hr className="linea-naranja" />
             
                 <div className="preguntas">
-                <p className="pregunta">Pregunta:</p>
-                
+                    <p className="pregunta">Pregunta:</p>
+                </div>
 
-
-                    </div>
-
-                
-                
-                <button className="pagina3-button">Continuar con la siguiente evaluación</button>
+                <button className="pagina3-button" onClick={handleContinue}>Continuar con la siguiente evaluación</button>
             </div>
         </div>
     );
