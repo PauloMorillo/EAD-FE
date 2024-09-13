@@ -1,19 +1,35 @@
+<<<<<<< HEAD:src/Components/Pagina2.jsx
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './EstilosPagina2.css';
+=======
+import React, { useState, useEffect, useContext } from "react";
+import { EadContext } from "../Context/EadContext.jsx";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import "./EstilosPagina2.css";
+>>>>>>> 5b3b187f (feature: context):formulario/src/Components/Pagina2.jsx
 
 export default function Pagina2() {
+  const {
+    idPatient,
+    setIdPatient,
+    selectedOption,
+    setSelectedOption,
+    initialPoint,
+    setInitialPoint,
+    evaluateKid,
+  } = useContext(EadContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
   const [buttonText, setButtonText] = useState('Selecciona una opción');
   const [edad, setEdad] = useState(null);
   const [rangoEdad, setRangoEdad] = useState(null);
   const [preguntas, setPreguntas] = useState([]);
   const [questionResponse, setquestionResponse] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [ponitI, setPonitI] = useState(0);
 
   const options = [
     { name: 'PERSONAL_SOCIAL', label: 'Personal Social' },
@@ -103,9 +119,16 @@ export default function Pagina2() {
   }, [preguntas]);
 
   const name = location.state && location.state.name;
-  const idPatientResponse = location.state && location.state.id;
+  setIdPatient(location.state && location.state.id);
 
-  const handleContinue = () => {
+  const handleContinues = async () => {
+    const response = await evaluateKid(
+      "http://18.189.81.6:9000/api/result",
+      idPatient,
+      initialPoint,
+      selectedOption
+    );
+    console.log(response);
     if (selectedOption) {
       navigate('/pagina3', { state: { selectedOption: buttonText, name, edad, rangoEdad, preguntas } });
     }
@@ -214,7 +237,7 @@ export default function Pagina2() {
         if (positionArray != 0) {
           if (preguntas[positionArray - 1].response || preguntas[positionArray + 1].response) {
             tempPonitI = 1;
-            setPonitI(1);
+            setInitialPoint(1);
             if (preguntas[positionArray].item == 2) {
 
               let resultados = preguntas.find((e) => !e.hasOwnProperty("isResponse") && e.item != 1)
@@ -241,7 +264,7 @@ export default function Pagina2() {
                 }
               }
             }
-            setPonitI(1);
+            setInitialPoint(1);
             let resultados = preguntas.find((e) => !e.hasOwnProperty("isResponse"))
             searchQuestion(resultados.item)
           }
@@ -272,7 +295,7 @@ export default function Pagina2() {
       if (preguntas[positionArray].response) {
         //busca si hay o no punto de inicio evalunado la pregunta siguiente y la anterior
         if (preguntas[positionArray - 1].response || preguntas[positionArray + 1].response) {
-          setPonitI(1);
+          setInitialPoint(1);
         }
         //valida si ya respondio la siguiente pregunta y pasa a la siguietne si la respuesta es "false"
         if (!preguntas[positionArray + 1].isResponse) {
@@ -311,8 +334,7 @@ export default function Pagina2() {
           /*     Si la pregunta anterior es verdadera y aun no se define el punto de incio lo devuelve 2 
               posiciones y si ya hay un punto de inicio avanza en el orden establecido */
           if (preguntas[positionArray - 1].response) {
-
-            if (ponitI !== 1) {
+            if (initialPoint !== 1) {
               let prueba = false;
               for (let i = positionArray; i > 0; i--) {
                 if (!preguntas[i - 1].isResponse) {
@@ -435,7 +457,9 @@ export default function Pagina2() {
             <button onClick={() => handleAnswer(false)} className="answer-button">No</button>
           </div>
         )}
-        <button onClick={handleContinue} className="continue-button">Continuar</button>
+        <button onClick={handleContinues} className="continue-button">
+          Continuar
+        </button>
       </div>
     </div>
   );

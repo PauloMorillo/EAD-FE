@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import './EstilosFormulario.css';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import Pagina2 from './Pagina2';
+import React, { useState, useEffect, useContext } from "react";
+import { useForm } from "react-hook-form";
+import "./EstilosFormulario.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { EadContext } from "../Context/EadContext";
 
 export default function PaginaFormulario() {
-  const { register, formState: { errors }, handleSubmit, setValue, watch } = useForm({
-    defaultValues: {}
+  const { idPatient, setIdPatient, patientName, setPatientName } =
+    useContext(EadContext);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    setValue,
+    watch,
+  } = useForm({
+    defaultValues: {},
   });
   const [errorNombre, setErrorNombre] = useState(false);
   const [errorFechaNacimiento, setErrorFechaNacimiento] = useState(false);
   const [mostrarSemanasGestacion, setMostrarSemanasGestacion] = useState(false);
   const [edadError, setEdadError] = useState(false);
   const [usuarioCreado, setUsuarioCreado] = useState(false);
-  const [idPatient, setIdPatient] = useState(0);
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
@@ -41,7 +48,7 @@ export default function PaginaFormulario() {
       });
       window.alert('Usuario creado correctamente');
       setUsuarioCreado(true);
-      setIdPatient(response.data.id)
+      setIdPatient(response.data.id);
     } catch (error) {
       console.error('Error al enviar los datos:', error.message);
       window.alert('Error al enviar los datos');
@@ -79,8 +86,9 @@ export default function PaginaFormulario() {
   const handleNombreChange = (event) => {
     const value = event.target.value;
 
-    if (/^[a-zA-ZñÑ\s]*$/.test(value) || value === '') {
-      setValue('name', value);
+    if (/^[a-zA-ZñÑ\s]*$/.test(value) || value === "") {
+      setPatientName(value);
+      setValue("name", value);
       setErrorNombre(false);
     } else {
       setErrorNombre(true);
@@ -112,28 +120,70 @@ export default function PaginaFormulario() {
           <div className="caja3">
             <div className="campo">
               <label id="titulo2">Nombre</label>
-              <input className='botoninput' type="text" {...register('name', { required: true, maxLength: 40 })} onChange={handleNombreChange} />
-              {errors.name?.type === 'required' && <p>No olvides agregar el nombre del paciente.</p>}
-              {errors.name?.type === 'maxLength' && <p>El nombre debe tener menos de 40 caracteres</p>}
-              {errorNombre && <p>No se pueden colocar números ni caracteres especiales en el nombre.</p>}
+              <input
+                className="botoninput"
+                type="text"
+                {...register("name", { required: true, maxLength: 40 })}
+                onChange={handleNombreChange}
+              />
+              {errors.name?.type === "required" && (
+                <p>No olvides agregar el nombre del paciente.</p>
+              )}
+              {errors.name?.type === "maxLength" && (
+                <p>El nombre debe tener menos de 40 caracteres</p>
+              )}
+              {errorNombre && (
+                <p>
+                  No se pueden colocar números ni caracteres especiales en el
+                  nombre.
+                </p>
+              )}
             </div>
             <div className="campo">
               <label id="titulo3">Fecha de nacimiento</label>
-              <input className='botonin' type="date" {...register('birth_date', { required: true })} onChange={handleFechaNacimientoChange} />
-              {errors.birth_date?.type === 'required' && <p>Por favor incluye la fecha de nacimiento del paciente</p>}
-              {errorFechaNacimiento && <p>La fecha de nacimiento no puede ser posterior a la fecha actual.</p>}
-              {edadError && <p>No se puede realizar el test para un niño mayor de 7 años.</p>}
+              <input
+                className="botonin"
+                type="date"
+                {...register("birth_date", { required: true })}
+                onChange={handleFechaNacimientoChange}
+              />
+              {errors.birth_date?.type === "required" && (
+                <p>Por favor incluye la fecha de nacimiento del paciente</p>
+              )}
+              {errorFechaNacimiento && (
+                <p>
+                  La fecha de nacimiento no puede ser posterior a la fecha
+                  actual.
+                </p>
+              )}
+              {edadError && (
+                <p>
+                  No se puede realizar el test para un niño mayor de 7 años.
+                </p>
+              )}
             </div>
             {mostrarSemanasGestacion && (
               <div className="campo">
                 <label id="titulo4">Semanas de gestación</label>
-                <p id="texto1">Para niños menores de 2 años es recomendable agregar las semanas de gestación.<br />
+                <p id="texto1">
+                  Para niños menores de 2 años es recomendable agregar las
+                  semanas de gestación.
+                  <br />
                   (en caso de dejar vacío, se toma por defecto 40 semanas)
                 </p>
-                <input className='botinp' type="number" {...register('weeks_gestation', {
-                  validate: value => (!value || (parseInt(value) > 23 && parseInt(value) < 41)) || "Las semanas de gestación deben ser mayores a 23 y menores a 41"
-                })} />
-                {errors.weeks_gestation && <p>{errors.weeks_gestation.message}</p>}
+                <input
+                  className="botinp"
+                  type="number"
+                  {...register("weeks_gestation", {
+                    validate: (value) =>
+                      !value ||
+                      (parseInt(value) > 23 && parseInt(value) < 41) ||
+                      "Las semanas de gestación deben ser mayores a 23 y menores a 41",
+                  })}
+                />
+                {errors.weeks_gestation && (
+                  <p>{errors.weeks_gestation.message}</p>
+                )}
               </div>
             )}
             <input id="button" type="submit" value="Empezar test" />
