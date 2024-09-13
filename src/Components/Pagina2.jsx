@@ -1,35 +1,21 @@
-<<<<<<< HEAD:src/Components/Pagina2.jsx
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import './EstilosPagina2.css';
-=======
-import React, { useState, useEffect, useContext } from "react";
-import { EadContext } from "../Context/EadContext.jsx";
-import { useLocation, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import "./EstilosPagina2.css";
->>>>>>> 5b3b187f (feature: context):formulario/src/Components/Pagina2.jsx
 
 export default function Pagina2() {
-  const {
-    idPatient,
-    setIdPatient,
-    selectedOption,
-    setSelectedOption,
-    initialPoint,
-    setInitialPoint,
-    evaluateKid,
-  } = useContext(EadContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
   const [buttonText, setButtonText] = useState('Selecciona una opción');
   const [edad, setEdad] = useState(null);
   const [rangoEdad, setRangoEdad] = useState(null);
   const [preguntas, setPreguntas] = useState([]);
   const [questionResponse, setquestionResponse] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [ponitI, setPonitI] = useState(0);
 
   const options = [
     { name: 'PERSONAL_SOCIAL', label: 'Personal Social' },
@@ -48,42 +34,12 @@ export default function Pagina2() {
     setIsOpen(false);
   };
 
-<<<<<<< HEAD
-    const fetchQuestions = (componente) => {
-        fetch(`http://18.189.81.6:9000/api/questions/?birth_date=2018-07-13&componente=${componente}&format=json&semanas_gestacion=40`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setEdad(data.age);
-                setRangoEdad(data.age_range);
-                // const filteredQuestions = data.Questions.filter(question => question.age_range === data.age_range);
-                const filteredQuestions = data.Questions
-                setPreguntas(filteredQuestions);
-
-                // Encontrar la pregunta inicial por 'initial_item'
-                const initialQuestionIndex = filteredQuestions.findIndex(question => question.item === data.initial_item);
-                setCurrentQuestionIndex(initialQuestionIndex !== -1 ? initialQuestionIndex : 0);
-            })
-            .catch(error => {
-                console.error('Hubo un problema con el request:', error);
-            });
-    };
-
-    useEffect(() => {
-        if (selectedOption) {
-            fetchQuestions(selectedOption);
-=======
   const fetchQuestions = (componente) => {
     const birthDate = location.state.birth_date; // Obtener la fecha de nacimiento del estado
     fetch(`http://18.189.81.6:9000/api/questions/?birth_date=${birthDate}&componente=${componente}&format=json&semanas_gestacion=40`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Error en la respuesta del servidor');
->>>>>>> 9dee8090 (resolucion hallazgos logica preguntas)
         }
         return response.json();
       })
@@ -119,16 +75,9 @@ export default function Pagina2() {
   }, [preguntas]);
 
   const name = location.state && location.state.name;
-  setIdPatient(location.state && location.state.id);
+  const idPatientResponse = location.state && location.state.id;
 
-  const handleContinues = async () => {
-    const response = await evaluateKid(
-      "http://18.189.81.6:9000/api/result",
-      idPatient,
-      initialPoint,
-      selectedOption
-    );
-    console.log(response);
+  const handleContinue = () => {
     if (selectedOption) {
       navigate('/pagina3', { state: { selectedOption: buttonText, name, edad, rangoEdad, preguntas } });
     }
@@ -237,7 +186,7 @@ export default function Pagina2() {
         if (positionArray != 0) {
           if (preguntas[positionArray - 1].response || preguntas[positionArray + 1].response) {
             tempPonitI = 1;
-            setInitialPoint(1);
+            setPonitI(1);
             if (preguntas[positionArray].item == 2) {
 
               let resultados = preguntas.find((e) => !e.hasOwnProperty("isResponse") && e.item != 1)
@@ -264,7 +213,7 @@ export default function Pagina2() {
                 }
               }
             }
-            setInitialPoint(1);
+            setPonitI(1);
             let resultados = preguntas.find((e) => !e.hasOwnProperty("isResponse"))
             searchQuestion(resultados.item)
           }
@@ -295,7 +244,7 @@ export default function Pagina2() {
       if (preguntas[positionArray].response) {
         //busca si hay o no punto de inicio evalunado la pregunta siguiente y la anterior
         if (preguntas[positionArray - 1].response || preguntas[positionArray + 1].response) {
-          setInitialPoint(1);
+          setPonitI(1);
         }
         //valida si ya respondio la siguiente pregunta y pasa a la siguietne si la respuesta es "false"
         if (!preguntas[positionArray + 1].isResponse) {
@@ -334,7 +283,8 @@ export default function Pagina2() {
           /*     Si la pregunta anterior es verdadera y aun no se define el punto de incio lo devuelve 2 
               posiciones y si ya hay un punto de inicio avanza en el orden establecido */
           if (preguntas[positionArray - 1].response) {
-            if (initialPoint !== 1) {
+
+            if (ponitI !== 1) {
               let prueba = false;
               for (let i = positionArray; i > 0; i--) {
                 if (!preguntas[i - 1].isResponse) {
@@ -374,47 +324,6 @@ export default function Pagina2() {
 
   const currentQuestion = preguntas[currentQuestionIndex];
 
-<<<<<<< HEAD
-                        <p id="n">Edad:</p>
-                        <p id="no">{edad}</p>
-                    </div>
-                )}
-                <p id="n">Nombre: </p>
-<<<<<<< HEAD
-                <p id="n">{name}xczv</p>
-=======
-                <p id="no">{name}</p>
->>>>>>> 3cbb2487 (correcion errores 2)
-            </div>
-            <div className="caja2">
-                <div className="dropdown">
-                    <h1 id="titulo10">Selecciona el área a evaluar</h1>
-                    <div>
-                        <button onClick={toggleDropdown} className="dropdown-toggle">
-                            {buttonText}
-                        </button>
-                        {isOpen && (
-                            <div className="dropdown-menu">
-                                {options.map((option, index) => (
-                                    <div key={index} onClick={() => handleOptionClick(option)} className="dropdown-item">
-                                        {option.label}
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                </div>
-                <p id="pq">Pregunta:</p>
-                {currentQuestion && (
-                    <div className="pregunta-actual">
-                        <h2>{currentQuestion.question}</h2>
-                        <button onClick={() => handleAnswer(true)} className="answer-button">Sí</button>
-                        <button onClick={() => handleAnswer(false)} className="answer-button">No</button>
-                    </div>
-                )}
-                <button onClick={handleContinue} className="continue-button">Continuar</button>
-            </div>
-=======
   return (
     <div className="caja">
       <div className="caja1">
@@ -447,7 +356,6 @@ export default function Pagina2() {
               </div>
             )}
           </div>
->>>>>>> 9dee8090 (resolucion hallazgos logica preguntas)
         </div>
         <p id="pq">Pregunta:</p>
         {currentQuestion && (
@@ -457,9 +365,7 @@ export default function Pagina2() {
             <button onClick={() => handleAnswer(false)} className="answer-button">No</button>
           </div>
         )}
-        <button onClick={handleContinues} className="continue-button">
-          Continuar
-        </button>
+        <button onClick={handleContinue} className="continue-button">Continuar</button>
       </div>
     </div>
   );
